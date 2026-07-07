@@ -78,9 +78,7 @@ git push -u origin main
 
 ## 2. Deploy it live
 
-Any Node host that supports WebSockets works. Two fast, free options:
-
-### Option A — Render.com
+Render.com
 1. Push the repo to GitHub (above).
 2. On [render.com](https://render.com) → **New +** → **Web Service** → connect the repo.
 3. Build command: `npm install` — Start command: `npm start`.
@@ -88,37 +86,6 @@ Any Node host that supports WebSockets works. Two fast, free options:
    `server.js` already reads via `process.env.PORT`.
 5. Deploy. You'll get a URL like `https://realtime-whiteboard.onrender.com`.
 
-### Option B — Railway.app
-1. [railway.app](https://railway.app) → **New Project** → **Deploy from GitHub repo**.
-2. Railway auto-detects Node, runs `npm install` and `npm start`, and assigns a public
-   URL automatically. No extra config needed.
-
-### Option C — Fly.io / Heroku / a VPS
-Any of these work the same way — `npm install && npm start`, with the `PORT` env var
-already wired up. If you use a VPS directly (e.g. DigitalOcean droplet), put Nginx or
-Caddy in front for TLS and make sure WebSocket upgrade headers are proxied through.
-
----
-
-## 3. Record the two-user demo
-
-Quickest path once it's deployed:
-
-1. Open the deployed URL in **two separate browser windows** side by side (or one
-   normal window + one private/incognito window, so cookies/sessions don't clash).
-2. In both, type the **same board name** (e.g. `demo`) with two different names
-   (e.g. "Alex" and "Jordan") and click **Open board**.
-3. Start a screen recording:
-   - **macOS**: `Cmd+Shift+5` → record a selected area covering both windows.
-   - **Windows**: `Win+Alt+R` (Xbox Game Bar) or Windows 11's built-in Snipping Tool
-     recorder.
-   - **Linux**: `SimpleScreenRecorder`, `Kazam`, or GNOME's built-in `Ctrl+Alt+Shift+R`.
-   - Or use [Loom](https://loom.com) / [Screen Studio](https://screen.studio) for a
-     one-click recording you can share as a link directly (no upload needed).
-4. Draw in window A, show the stroke appear instantly in window B, then draw in B and
-   show it appear in A. Show the live cursor labels, try the color swatches, and hit
-   **clear** to show it wipe both boards at once.
-5. Export as `.mp4` (or paste the Loom link) and attach it alongside your GitHub link.
 
 ---
 
