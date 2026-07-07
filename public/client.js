@@ -202,10 +202,21 @@
     return `whiteboard:${room}`;
   }
 
+  function downloadBoardImage(room) {
+    const stamp = new Date().toISOString().replace(/[:.]/g, '-');
+    const link = document.createElement('a');
+    link.download = `whiteboard-${room}-${stamp}.png`;
+    link.href = canvas.toDataURL('image/png');
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  }
+
   saveBtn.addEventListener('click', () => {
     try {
       localStorage.setItem(storageKey(currentRoom), JSON.stringify(localStrokes));
-      showToast('Board saved to this browser');
+      downloadBoardImage(currentRoom);
+      showToast('Board saved + image downloaded');
     } catch (err) {
       showToast('Could not save (storage full or unavailable)');
     }
