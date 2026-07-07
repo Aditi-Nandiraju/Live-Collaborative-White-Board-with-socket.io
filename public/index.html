@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Drafting Table — Live Whiteboard</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="entry-screen" class="entry-screen">
+    <div class="entry-card">
+      <div class="entry-eyebrow">DRAFTING TABLE</div>
+      <h1>Sketch together, live.</h1>
+      <p class="entry-sub">Enter a board name. Anyone who joins the same board sees every stroke as you make it.</p>
+      <label class="field-label" for="name-input">Your name</label>
+      <input id="name-input" class="field-input" type="text" placeholder="e.g. Sam" maxlength="20" />
+      <label class="field-label" for="room-input">Board code</label>
+      <div class="code-row">
+        <input id="room-input" class="field-input" type="text" placeholder="e.g. K7QX2M" maxlength="30" />
+        <button id="generate-btn" type="button" class="btn-generate" title="Generate a new code">⟳ new</button>
+      </div>
+      <button id="join-btn" class="btn-primary">Open board</button>
+      <div class="entry-hint">Leave the code blank to create a new board, or enter a code someone shared with you to join theirs.</div>
+    </div>
+  </div>
+
+  <div id="board-screen" class="board-screen hidden">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">△</span>
+        <span id="room-label" class="brand-room">board</span>
+        <button id="copy-code-btn" class="btn-copy" title="Copy board code to share">copy code</button>
+      </div>
+
+      <div class="toolbar">
+        <div class="swatches" id="swatches"></div>
+
+        <label class="size-control">
+          <span>weight</span>
+          <input id="size-range" type="range" min="1" max="24" value="4" />
+        </label>
+
+        <button id="undo-btn" class="btn-ghost" title="Undo your last stroke">undo</button>
+        <button id="clear-btn" class="btn-ghost" title="Clear the whole board">clear</button>
+        <button id="save-btn" class="btn-ghost" title="Save this board to this browser">save</button>
+      </div>
+
+      <div class="status">
+        <span class="pulse-dot"></span>
+        <span id="user-count">1</span> here
+      </div>
+    </header>
+
+    <main class="canvas-wrap">
+      <canvas id="board"></canvas>
+      <div id="cursor-layer" class="cursor-layer"></div>
+    </main>
+
+    <div id="toast" class="toast"></div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="client.js"></script>
+</body>
+</html>
